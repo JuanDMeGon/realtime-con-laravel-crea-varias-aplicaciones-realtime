@@ -84,4 +84,19 @@
             element.parentNode.removeChild(element);
         })
 </script>
+
+<script>
+    const sendElement = document.getElementById('send');
+    const messageElement = document.getElementById('message');
+
+    sendElement.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        window.axios.post('/chat/message', {
+            message: messageElement.value
+        });
+
+        messageElement.value = '';
+    });
+</script>
 @endpush
