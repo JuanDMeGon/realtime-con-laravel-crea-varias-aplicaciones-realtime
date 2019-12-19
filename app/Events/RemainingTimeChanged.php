@@ -31,8 +31,6 @@ class RemainingTimeChanged implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        \Log::debug($this->time);
-
         return new Channel('game');
     }
 }
