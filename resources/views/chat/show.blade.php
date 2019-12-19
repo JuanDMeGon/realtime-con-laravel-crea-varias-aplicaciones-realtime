@@ -89,7 +89,6 @@
         .listen('MessageSent', (e) => {
             let element = document.createElement('li');
 
-            element.setAttribute('id', e.user.id);
             element.innerText = e.user.name + ': ' + e.message;
 
             messagesElement.appendChild(element);
@@ -116,5 +115,17 @@
     {
         window.axios.post('/chat/greet/' + id);
     }
+</script>
+
+<script>
+    Echo.private('chat.greet.{{ auth()->user()->id }}')
+        .listen('GreetingSent', (e) => {
+            let element = document.createElement('li');
+
+            element.innerText = e.message;
+            element.classList.add('text-success');
+
+            messagesElement.appendChild(element);
+        });
 </script>
 @endpush
